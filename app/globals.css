@@ -316,3 +316,164 @@ body {
 .animate-soft-slide {
   animation: soft-slide 4s ease-in-out infinite;
 }
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.6; transform: scale(0.9); }
+}
+.card-radial-border {
+  position: relative;
+  border-radius: 26px;
+  background: #0a0d10;
+  overflow: hidden;
+}
+
+/* border */
+.card-radial-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.35),
+
+    rgba(255,255,255,0.03) 100%
+  );
+
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* REMOVE all mask, remove all sweep animations - KEEP IT SIMPLE */
+
+.logo-container {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo itself - ALWAYS 100% visible */
+.logo-image {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1 !important; /* Force always visible */
+}
+
+/* Simple continuous glow effect - no gaps */
+.logo-glow-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  background: radial-gradient(circle at center, rgba(11, 225, 154, 0.4) 0%, transparent 70%);
+  filter: blur(15px);
+  animation: gentleGlow 3s ease-in-out infinite;
+}
+
+@keyframes gentleGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+@keyframes softPulse {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 2px rgba(11, 225, 154, 0.3));
+  }
+  50% {
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(11, 225, 154, 0.6));
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 2px rgba(11, 225, 154, 0.3));
+  }
+}
+
+.logo-glow {
+  animation: softPulse 4s ease-in-out infinite;
+}
+
+@keyframes outlineSweep {
+  0% {
+    transform: translate(-150%, -150%) rotate(25deg);
+  }
+  100% {
+    transform: translate(150%, 150%) rotate(25deg);
+  }
+}
+
+/* Main glow sweep - subtle overlay */
+.outline-sweep {
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  width: 260%;
+  height: 260%;
+  pointer-events: none;
+  
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgb(11, 225, 154) 40%,
+    rgba(10, 222, 151, 0.767) 50%,
+    rgba(11, 225, 154, 0.76) 60%,
+    transparent 75%
+  );
+  
+  filter: blur(10px);
+  animation: outlineSweep -5s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+/* Secondary glow - covers fade-out moment */
+.outline-sweep-secondary {
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  width: 260%;
+  height: 260%;
+  pointer-events: none;
+  
+  background: linear-gradient(
+    90deg,
+    transparent 30%,
+    rgb(11, 225, 154) 40%,
+    rgba(10, 222, 151, 0.767) 50%,
+    rgba(11, 225, 154, 0.76) 60%,
+    transparent 70%
+  );
+  
+  filter: blur(15px);
+  animation: outlineSweep 8s ease-in-out infinite;
+  animation-delay: -4s; /* Half of 8s - NO GAP */
+  mix-blend-mode: overlay;
+}

@@ -322,13 +322,13 @@ useEffect(() => {
 
 <RotatingTab
   title="Work Process"
-  className="rounded-md mb-6 text-center pt-2 w-[140px] h-[40px] text-sm"
+  className="rounded-md mb-6 -ml-12 text-center pt-2 w-[140px] h-[40px] text-sm"
 />
 
     {/* Heading */}
     <SpotlightText
       text="The Smart Process Behind Every Project"
-      className={`${spaceGrotesk.className} text-[42px] mt-6 leading-tight font-extrabold text-left`}
+      className={`${spaceGrotesk.className} text-[42px] mt-6 leading-tight -ml-10 font-extrabold text-left`}
     />
 
     {/* Timeline */}
@@ -549,40 +549,51 @@ useEffect(() => {
 
 </section>
 
-     {/* Section 7: CTA - 80px padding top and bottom */}
-    <section className="w-full bg-black py-24 flex flex-col items-center text-center py-20">
-        {/* Heading */}
-    <SpotlightText
-      text="Take Your business digital the smart way"
-      className={`${spaceGrotesk.className} text-[42px]  leading-tight font-extrabold text-center`}
-    />
-    <p className="text-gray-400 text-[20px] mt-4 ">
-      We design and build modern websites applications and digital systems that<br/>
-      help your business grow faster and operate smarter
-    </p>
-<button
-  className="group relative flex mt-14 items-center justify-between 
-  w-[250px] h-[56px] px-4 
-  rounded-full 
-  bg-gradient-to-r from-[#2ED3B7] to-[#1BAF9F] 
-  text-white text-2xl font-medium 
-  shadow-[0_0_40px_rgba(46,211,183,0.25)]
-  transition-all duration-300 hover:scale-105"
->
-  <span className="text-[20px] pl-4 font-medium">Let’s Connect</span>
+<section className="relative w-full py-28 flex flex-col items-center text-center overflow-hidden bg-black">
 
-  <div
-    className="w-10 h-10 flex ml-2 items-center justify-center 
-    rounded-full bg-white 
-    transition-all duration-300"
-  >
-    <ArrowRightIcon
-      className="w-7 h-7 text-[#1BAF9F]"
-      strokeWidth={1.8}
+  {/* Background Layer */}
+  <div className="absolute inset-0 z-0">
+
+    <div
+      className="absolute inset-0 bg-center bg-cover "
+      style={{
+        backgroundImage: "url('/ctabg.png')",
+      }}
     />
   </div>
-</button>
-          </section>
+
+  {/* Content */}
+  <div className="relative z-10 flex flex-col items-center">
+
+    <h2 className={`${spaceGrotesk.className} text-[42px] leading-tight font-extrabold text-white max-w-4xl`}>
+      Take your business digital the smart way.
+    </h2>
+
+    <p className="text-gray-400 text-[20px] mt-6 max-w-3xl">
+      We design and build modern websites, applications, and digital systems
+      that help your business grow faster and operate smarter.
+    </p>
+
+    <button className="group relative flex mt-14 items-center justify-between 
+      w-[250px] h-[56px] px-4 rounded-full 
+      bg-gradient-to-r from-[#2ED3B7] to-[#1BAF9F] 
+      text-white text-xl font-medium 
+      shadow-[0_0_40px_rgba(46,211,183,0.25)]
+      transition-all duration-300 hover:scale-105">
+
+      <span className="pl-4 font-medium">Let’s Connect</span>
+
+      <div className="w-10 h-10 flex ml-2 items-center justify-center rounded-full bg-white">
+        <ArrowRightIcon
+          className="w-6 h-6 text-[#1BAF9F]"
+          strokeWidth={1.8}
+        />
+      </div>
+    </button>
+
+  </div>
+
+</section>
     </div>
     
   );
